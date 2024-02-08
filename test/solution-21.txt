@@ -1,0 +1,8 @@
+========================================
+|               SOLUTION               |
+========================================
+Max score:	0
+Sequence:	
+Coordinates:
+
+Time elapsed:	0.0 ms

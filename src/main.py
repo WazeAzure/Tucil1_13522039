@@ -18,9 +18,9 @@ class App:
         self.ut = Util()
         self.sol = None
 
-        self.main()
         
     def main(self):
+        self.rf.input_prompt()
         if(self.rf.choice == 3):
             self.exit_program()
         elif(self.rf.choice == 1):
@@ -30,9 +30,16 @@ class App:
         
         self.sol = Solution.Solution(self.rf.matrix_size, self.rf.sequence, self.rf.matrix, self.rf.buffer_size)
         self.sol.main()
+
+        choice = input("Apakah anda ingin menyimpan solusi? (y/n)\n> ")
+
+        if(choice == 'y'):
+            fname = input("Masukkan nama file\n> ")
+            self.sol.saveToFile(fname)
+    
     
     def exit_program(self):
         exit(0)
 
 if __name__ == "__main__":
-    App()
+    App().main()

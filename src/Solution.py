@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import multiprocessing
+import os
 
 class Solution:
     def __init__(self, matrix_size, sequence, matrix, buffer_size):
@@ -13,6 +14,7 @@ class Solution:
         self.max_score = 0
         self.max_coor = []
         self.time_elapsed = 0
+        self.abs_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
         if(buffer_size > sum([x[1] for x in sequence])):
             self.max_depth = sum([x[1] for x in sequence])
@@ -57,7 +59,7 @@ class Solution:
         print("=====================================")
     
     def check_ans(self):
-        max_score = 0
+        max_score = float('-inf')
         max_coor = []
         # print(self.ans_pool)
         for x in self.ans_pool:
@@ -74,8 +76,9 @@ class Solution:
                 max_score = temp_score
                 max_coor = x[1]
 
-        self.max_score = max_score
-        self.max_coor = max_coor
+        if(max_score != 0):
+            self.max_score = max_score
+            self.max_coor = max_coor
     
     def show_banner(self):
         print("========================================")
@@ -85,16 +88,11 @@ class Solution:
     def show_answer(self):
         print("Max score:\t", self.max_score)
         print("Sequence:\t", " ".join(list(map(lambda x: self.matrix[x[0]][x[1]], self.max_coor))))
-        print("Coordinates:\n", "\n".join(list(map(lambda x: "("+str(x[0]+1)+", "+str(x[1]+1)+")", self.max_coor))))
+        print("Coordinates:\n", "\n".join(list(map(lambda x: "("+str(x[1]+1)+", "+str(x[0]+1)+")", self.max_coor))))
         print("Time elapsed:\t", round(self.time_elapsed * 1000, 2), "ms")
-        choice = input("Apakah anda ingin menyimpan solusi? (y/n)\n> ")
-
-        if(choice == 'y'):
-            fname = input("Masukkan nama file\n> ")
-            self.saveToFile(fname)
-    
+        
     def saveToFile(self, fname):
-        fname = "test/solution-" + fname #"solution-test1.txt"
+        fname = self.abs_path + "/test/solution-" + fname #"solution-test1.txt"
         f = open(fname, "w")
 
         f.write("========================================\n")
@@ -102,7 +100,9 @@ class Solution:
         f.write("========================================\n")
         f.write("Max score:\t{}\n".format(self.max_score))
         f.write("Sequence:\t{}\n".format(" ".join(list(map(lambda x: self.matrix[x[0]][x[1]], self.max_coor)))))
-        f.write("Coordinates:\n{}\n".format("\n".join(list(map(lambda x: "("+str(x[0]+1)+", "+str(x[1]+1)+")", self.max_coor)))))
+        f.write("Coordinates:\n{}\n".format("\n".join(list(map(lambda x: "("+str(x[1]+1)+", "+str(x[0]+1)+")", self.max_coor)))))
         f.write("Time elapsed:\t{} ms".format(round(self.time_elapsed*1000, 2)))
 
         print(f"File saved in {fname}")
+
+        return fname

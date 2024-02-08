@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Cyberpunk Minigame Solver</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+            * {font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+        </style>
+    </head>
+    <body background="#f8f9fd">
+        <div class="container">
+            <h1>Cyberpunk Minigame Solver</h1>
+            <hr>
+            <div class="row">
+                <h2>Filename Input</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <form action="{{ url_for('solve') }}" method="POST" enctype="multipart/form-data">
+                        <div class="form-group form-col">
+                            <label for="file-name">Enter File Name</label>
+                            <input id="file-name" type="text" class="form-control" name="file-name" placeholder="test-1.txt">
+                            <small>Make sure your file is in test folder!</small>
+                        </div>
+                        <button class="btn btn-secondary mb-2" name="file-solve" >File Solve</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2>Manual Input</h2>
+                </div>
+                <div class="col">
+                    <h2>Auto Generate</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <form action="{{ url_for('solve') }}" method="post" enctype="multipart/form-data">
+                        <div class="form-group form-col">
+                            <label for="buffer-size">Enter Buffer Size</label>
+                            <input id="buffer-size" type="number" class="form-control" name="buffer-size" placeholder="0">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="matrix-id">Enter Matrix</label>
+                            <textarea id="matrix-id" class="form-control" placeholder="AA BB CC DD EE FF&#10;GG HH II JJ KK LL" rows="6" name="matrix" ></textarea>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="seq-id">Enter Sequences & Score</label>
+                            <textarea id="seq-id" class="form-control" placeholder="Sequence&#10;Score&#10;AA BB CC &#10;15&#10;DD EE&#10;50" rows="6" name="seq-score"></textarea>
+                        </div>
+        
+                        <button type="submit" class="btn btn-primary mb-2"  name="submit" >Solve</button>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <form action="{{ url_for('solve') }}" method="post" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="buffer-size">Enter Buffer Size</label>
+                                <input id="buffer-size" type="number" class="form-control" name="buffer-size" placeholder="0">
+                            </div>
+    
+                            <div class="form-group col">
+                                <label for="token-size">Enter Token Size</label>
+                                <input id="token-size" type="number" class="form-control" name="token-size" placeholder="6">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="token-id">Enter Tokens</label>
+                                <input type="text" id="token-id" class="form-control" placeholder="AA BB CC DD EE FF" name="token-id" >
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="matrix-col">Enter Matrix Column</label>
+                                <input id="matrix-col" type="number" class="form-control" name="matrix-col" placeholder="0">
+                            </div>
+                            <div class="form-group col">
+                                <label for="matrix-row">Enter Matrix Row</label>
+                                <input id="matrix-row" type="number" class="form-control" name="matrix-row" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="seq-id">Enter Sequences Quantity</label>
+                                <input type="number" id="seq-id" class="form-control" placeholder="3" name="seq-id">
+                            </div>
+                            <div class="form-group col">
+                                <label for="seq-len">Enter Maximum Sequence Length</label>
+                                <input type="number" id="seq-len" class="form-control" placeholder="4" name="seq-len">
+                                <small>The minimum sequence length is 2</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="seq-min">Enter Mnimum Sequence Score</label>
+                                <input type="number" id="seq-max" class="form-control" placeholder="3" name="seq-min">
+                            </div>
+                            <div class="form-group col">
+                                <label for="seq-max">Enter Maximum Sequence Score</label>
+                                <input type="number" id="seq-min" class="form-control" placeholder="4" name="seq-max">
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary mb-2" name="auto-generate" >Auto Generate</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
