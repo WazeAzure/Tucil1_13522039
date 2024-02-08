@@ -102,10 +102,10 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/WazeAzure/Tucil1_13522039.git
    ```
-2. Run apps from **root folder**
+2. Run apps. Make sure flask installed
    ```sh
    cd Tucil1_13522039
-   python3 src/main.python
+   python3 src/server.py
    ```
 3. If you want to do input from file, put your file inside `test/` folder.
 
@@ -156,7 +156,17 @@ Project Link: [https://github.com/WazeAzure/Tucil1_13522039](https://github.com/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Important Notes
 
+| No | Points | Ya | Tidak |
+| --- | --- | --- | --- |
+| 1 | Program berhasil dikompilasi tanpa kesalahan | ✔️ | |
+| 2 | Program berhasil dijalankan | ✔️ | |
+| 3 | Program dapat membaca masukan berkas .txt | ✔️ | |
+| 4 | Program dapat menghasilkan masukan seacara acak | ✔️ | |
+| 5 | Solusi yang diberikan program optimal | ✔️ | |
+| 6 | Program dapat menyimpan solusi dalam berkas .txt | ✔️ | |
+| 7 | Program memiliki GUI | ✔️ | |
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
