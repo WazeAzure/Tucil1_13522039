@@ -46,8 +46,11 @@ def solve():
         min_score = int(request.form['seq-min'])
         max_score = int(request.form['seq-max'])
 
+        print("buffer size:", buffer_size)
         m_obj.rf.generate_problem(buffer_size, matrix_size, token_size, token, seq_size, seq_len, min_score, max_score)
+        print("buffer size:", m_obj.rf.buffer_size)
         sol = Solution.Solution(m_obj.rf.matrix_size, m_obj.rf.sequence, m_obj.rf.matrix, m_obj.rf.buffer_size)
+        print("maximum depth:", sol.max_depth)
         sol.main()
     elif "submit" in request.form:
         arr = ['buffer-size', 'matrix', 'seq-score']
@@ -103,4 +106,4 @@ def solve():
                            exec_time=round(sol.time_elapsed * 1000, 2), len_coor=len(sol.max_coor), between=between)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

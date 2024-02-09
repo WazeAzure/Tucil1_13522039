@@ -16,7 +16,8 @@ class Solution:
         self.time_elapsed = 0
         self.abs_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-        if(buffer_size > sum([x[1] for x in sequence])):
+        print("max depth dari dalam:", self.max_depth)
+        if(buffer_size > sum([len(x[0]) for x in sequence])):
             self.max_depth = sum([x[1] for x in sequence])
     
     def main(self):
@@ -36,6 +37,8 @@ class Solution:
         if (depth == self.max_depth): # basis max depth
             # print("called")
             self.ans_pool.append((ans, coor))
+            return
+        elif (depth > self.max_depth):
             return
 
         if (b): # b = True -> Horizontal 
@@ -59,10 +62,12 @@ class Solution:
         print("=====================================")
     
     def check_ans(self):
+        print("checK_ans clalled")
         max_score = float('-inf')
         max_coor = []
         # print(self.ans_pool)
         for x in self.ans_pool:
+            isExist = False
             temp_score = 0
             for i in range (len(self.sequence)):
                 s = " ".join(self.sequence[i][0])
@@ -70,15 +75,17 @@ class Solution:
                 if s in x[0]:
                     # print(s, " | ", x)
                     temp_score += self.sequence[i][1]
+                    isExist = True
             
             # print(temp_score)
-            if(temp_score > max_score):
+            if(temp_score > max_score and isExist):
                 max_score = temp_score
                 max_coor = x[1]
-
-        if(max_score != 0):
+        if(max_score == float('-inf')):
+            self.max_score = 0
+        else:
             self.max_score = max_score
-            self.max_coor = max_coor
+        self.max_coor = max_coor
     
     def show_banner(self):
         print("========================================")
