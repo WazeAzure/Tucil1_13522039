@@ -116,6 +116,10 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+![image](https://github.com/WazeAzure/Tucil1_13522039/assets/55005873/cc3e00aa-1677-4e5a-ac9d-41ec12b81a5b)
+
+![image](https://github.com/WazeAzure/Tucil1_13522039/assets/55005873/86cfb970-05d1-4cc4-b42e-cd5705df1895)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
