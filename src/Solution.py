@@ -15,10 +15,6 @@ class Solution:
         self.max_coor = []
         self.time_elapsed = 0
         self.abs_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-        # print("max depth dari dalam:", self.max_depth)
-        if(buffer_size > sum([len(x[0]) for x in sequence])):
-            self.max_depth = sum([x[1] for x in sequence])
     
     def main(self):
         visited = np.zeros((self.row, self.col))
@@ -34,6 +30,7 @@ class Solution:
         self.show_answer()
     
     def brute_force(self, row, col, b, ans, depth, coor, visited):
+        # print(len(self.ans_pool))
         if (depth == self.max_depth): # basis max depth
             # print("called")
             self.ans_pool.append((ans, coor))
@@ -44,24 +41,28 @@ class Solution:
         # heuristic approach
         if (depth == 3):
             temp_ans = ans.split(' ')
+            temp_ans = [x for x in temp_ans if x]
 
             verdict = False
             # check 3rd token of ans is 1st token of sequence
             for x in self.sequence:
-                if x[0][0] == temp_ans[2]:
-                    verdict = True
+                if(len(temp_ans) >= 3):
+                    if x[0][0] == temp_ans[2]:
+                        verdict = True
             
-            for x in self.sequence:
-                if x[0][0] == temp_ans[1] and x[0][1] == temp_ans[2]:
-                    verdict = True
+            if(len(temp_ans) >= 3 and len(x[0]) >= 2 and not verdict):
+                for x in self.sequence:
+                    if x[0][0] == temp_ans[1] and x[0][1] == temp_ans[2]:
+                        verdict = True
+            if(len(x[0]) >= 2 and not verdict):
+                for x in self.sequence:
+                    if x[0][0] == temp_ans[0] and x[0][1] == temp_ans[1] and len(x[0]) == 2:
+                        verdict = True
             
-            for x in self.sequence:
-                if x[0][0] == temp_ans[0] and x[0][1] == temp_ans[1] and len(x[0]) == 2:
-                    verdict = True
-            
-            for x in self.sequence:
-                if x[0][0] == temp_ans[0] and x[0][1] == temp_ans[1] and x[0][2] == temp_ans[2]:
-                    verdict = True
+            if(len(temp_ans) >= 3 and len(x[0]) >= 3 and not verdict):
+                for x in self.sequence:
+                    if x[0][0] == temp_ans[0] and x[0][1] == temp_ans[1] and x[0][2] == temp_ans[2]:
+                        verdict = True
 
 
             if (not verdict):

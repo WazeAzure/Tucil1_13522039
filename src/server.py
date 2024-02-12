@@ -69,8 +69,11 @@ def solve():
             m_obj.rf.sequence.append(([y for y in seq.split(' ') if y], val))
         m_obj.rf.sequence_size = len(m_obj.rf.sequence)
         
+        # print(m_obj.rf.matrix)
+        # print(m_obj.rf.sequence)
         m_obj.rf.matrix_size = [len(m_obj.rf.matrix), len(m_obj.rf.matrix[0])]
         sol = Solution.Solution(m_obj.rf.matrix_size, m_obj.rf.sequence, m_obj.rf.matrix, m_obj.rf.buffer_size)
+        # print(sol.ans_pool)
         sol.main()
     elif "file-solve" in request.form:
         if "file-name" not in request.form:
