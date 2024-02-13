@@ -34,7 +34,8 @@ def solve():
         
         for x in arr:
             if x not in request.form:
-                flash(f'{x} is required!')
+                flash(f'{x} is required!', 'error')
+                return render_template('error.html')
 
         buffer_size = int(request.form['buffer-size'])
         token_size = int(request.form['token-size'])
@@ -57,6 +58,7 @@ def solve():
         for x in arr:
             if x not in request.form:
                 flash(f'{x} is required!')
+                return render_template('error.html')
 
         m_obj.rf.buffer_size = int(request.form['buffer-size'])
         matrix = request.form['matrix'].split('\n')
@@ -78,9 +80,12 @@ def solve():
     elif "file-solve" in request.form:
         if "file-name" not in request.form:
             flash("filename is required!")
+            return render_template('error.html')
         
         filename = request.form['file-name']
-        m_obj.rf.read_file(filename)
+        if(not m_obj.rf.read_file(filename)):
+            flash(f'{filename} does not exist')
+            return render_template('error.html')
 
         sol = Solution.Solution(m_obj.rf.matrix_size, m_obj.rf.sequence, m_obj.rf.matrix, m_obj.rf.buffer_size)
         sol.main()
@@ -109,4 +114,5 @@ def solve():
                            exec_time=round(sol.time_elapsed * 1000, 2), len_coor=len(sol.max_coor), between=between)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.config['SECRET_KEY'] = 'super secret key'
+    app.run()

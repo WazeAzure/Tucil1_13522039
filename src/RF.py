@@ -60,6 +60,10 @@ class RF:
     
     def read_file(self, fname):
         self.fname = self.abs_path + "/test/" + fname
+
+        if (not os.path.isfile(self.fname)):
+            return False
+        
         f = open(self.fname, 'r')
         f = f.read()
         f = f.split('\n')
@@ -74,3 +78,5 @@ class RF:
         for i in range(self.sequence_size):
             seq, val = f[2+self.matrix_size[0] + 1 + 2 *i], f[2+self.matrix_size[0] + 2 + 2 *i]
             self.sequence.append((seq.split(' '), int(val)))
+        
+        return True
